@@ -14,7 +14,7 @@
          {{-- Menu--}}
          <div class="menu">
             <b>
-                <a href="/home">HOME</a>
+                <a href="/Home">HOME</a>
                 {{-- @if (session('user')->role == 'admin') --}}
                 <a href="/guru/index">GURU</a>
                 <a href="/jurusan/index">JURUSAN</a>
@@ -36,7 +36,7 @@
            <div class="footer">
             <center>
                 <p>
-                    &copy; {{date ('Y')}} - UJIKOM @livewireScripts
+                    &copy; {{date ('Y')}} - UJIKOM 
                 </p>
             </center>
            </div>

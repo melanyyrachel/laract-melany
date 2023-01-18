@@ -49,7 +49,7 @@ class KelasController extends Controller
             'jurusan_id' => 'required',
         ]);
         Kelas::create($data_kelas);
-        return redirect('/kelas/index')->with('success', 'Data Kelas Berhasil Ditambah');
+        return redirect('/kelas/index')->with('success', 'DATA KELAS BERHASIL DITAMBAH');
     }
 
     /**
@@ -91,7 +91,7 @@ class KelasController extends Controller
             'jurusan_id' => 'required'
         ]);
         $kelas->update($data_kelas);
-        return redirect('/kelas/index')->with('success', 'Data kelas Berhasil Ditambah');
+        return redirect('/kelas/index')->with('success', 'DATA BERHASIL DI UPDATE');
     }
 
     /**
@@ -119,6 +119,6 @@ class KelasController extends Controller
 
         $kelas->delete();
 
-        return redirect('/kelas/index')->with('success', 'Data Berhasil dihapus');
+        return redirect('/kelas/index')->with('success', 'DATA BERHASIL DIHAPUS');
     }
 }

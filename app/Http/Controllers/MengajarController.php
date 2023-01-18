@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Kelas;
+use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Mengajar;
-use Illuminate\Http\Request;
-
-class MapelController extends Controller
+class MengajarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +17,7 @@ class MapelController extends Controller
     public function index()
     {
         //
-        return view('mapel.index', [
-            'mapel'=> Mapel::all()
-        ]);
+        return view('mengajar.index', ['mengajar'=> Mengajar::all()]);
     }
 
     /**
@@ -28,7 +28,11 @@ class MapelController extends Controller
     public function create()
     {
         //
-        return view('mapel.create');
+        return view ('mengajar.create', [
+          'guru' => Guru::all(),
+          'mapel' => Mapel::all(),
+          'kelas' => Kelas::all()  
+        ]);
     }
 
     /**
@@ -40,11 +44,13 @@ class MapelController extends Controller
     public function store(Request $request)
     {
         //
-        $data_mapel = $request->validate([
-            'nama_mapel'=>['required']
+        $data_mengajar = $request ->validate([
+            'guru_id'=> 'required',
+            'mapel_id'=> 'required',
+            'kelas_id'=> 'required'
         ]);
-        Mapel::create($data_mapel);
-        return redirect('/mapel/index')->with ('success', 'DATA MATA PELAJARAN BERHASIL DITAMBAH');
+        Mengajar::create($data_mengajar);
+        return redirect('/mengajar/index')->with('success', 'DATA MENGAJAR BERHASIL DITAMBAH');
     }
 
     /**
@@ -64,11 +70,14 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mapel $mapel)
+    public function edit( Mengajar $mengajar)
     {
         //
-        return view('mapel.edit', [
-            'mapel'=> $mapel
+        return view('mengajar.edit', [
+            'mengajar' => $mengajar, 
+            'guru' => Guru::all(), 
+            'mapel' => Mapel::all(),
+            'kelas' => Kelas::all()
         ]);
     }
 
@@ -79,14 +88,16 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mapel $mapel)
+    public function update(Request $request, Mengajar $mengajar)
     {
         //
-        $data_mapel = $request->validate([
-            'nama_mapel'=> 'required'
+        $data_mengajar = $request->validate([
+            'guru_id' => 'required',
+            'mapel_id' => 'required',
+            'kelas_id' => 'required'
         ]);
-        $mapel->update($data_mapel);
-        return redirect('/mapel/index')->with('success', 'DATA MATA PELAJARAN BERHASIL DI UPDATE');
+        $mengajar->update($data_mengajar);
+        return redirect('/mengajar/index')->with('success', 'DATA MENGAJAR BERHASIL DI UPDATE');
     }
 
     /**
@@ -95,14 +106,10 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mapel $mapel)
+    public function destroy( Mengajar $mengajar)
     {
         //
-        $mengajar = Mengajar::where('mapel_id', $mapel->mapel_id)->first();
-        if($mengajar){
-            return back()->with('error', "$mapel->nama_mapel masih digunakan di menu mengajar");
-        }
-        $mapel->delete();
-        return redirect('/mapel/index')->with ('success', 'DATA MATA PELAJARAN BERHASIL DIHAPUS');
+        $mengajar->delete();
+        return back()->with('success',"DATA MENGAJAR BERHASIL DIHAPUS");
     }
 }

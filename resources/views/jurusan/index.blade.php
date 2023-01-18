@@ -3,7 +3,13 @@
     <center>
         <b>
             <h2>JURUSAN</h2>
-            <a href="/jurusan/create" class="button-primary">Tambah Data</a>
+            <a href="/jurusan/create" class="button-primary">TAMBAH DATA</a>
+            @if (session('success'))
+            <p class="text-success">{{session('success')}}</p>
+        @endif
+        @if (session('error'))
+            <p class="text-danger">{{session('error')}}</p>
+        @endif
             <table cellpadding="10">
                 <tr>
                     <th>NO</th>

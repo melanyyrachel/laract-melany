@@ -50,7 +50,7 @@ class GuruController extends Controller
         ]);
         Guru::create($data_guru);
 
-        return redirect('/guru/index')->with('sucsess', 'Data Guru Berhasil Ditambah');
+        return redirect('/guru/index')->with('success', 'DATA GURU BERHASIL DITAMBAH');
     }
 
     /**
@@ -96,7 +96,7 @@ class GuruController extends Controller
             'password'=> 'required'
         ]);
         $guru->update($data_guru);
-        return redirect('/guru/index')->with('sucsess', 'Data Guru Berhasil Update');
+        return redirect('/guru/index')->with('success', 'DATA GURU BERHASIL DI UPDATE');
     }
 
     /**
@@ -110,9 +110,9 @@ class GuruController extends Controller
         //
         $mengajar = Mengajar::where('guru_id', $guru->id)->first();
         if($mengajar){
-            return back()->with('error', "guru-> nama_guru masih digunakan di menu mengajar");
+            return back()->with('error', "$guru->nama_guru masih digunakan di menu mengajar");
         }
         $guru->delete();
-        return redirect('/guru/index')->with ('sucsess', 'Data guru berhasil dihapus');
+        return redirect('/guru/index')->with ('success', 'DATA GURU BERHASIL DIHAPUS');
     }
 }

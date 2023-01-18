@@ -51,7 +51,7 @@ class SiswaController extends Controller
             'password'=>'required'
         ]);
         Siswa::create($data_siswa);
-        return redirect('/siswa/index')->with ('sucsess', 'Data guru berhasil dihapus');
+        return redirect('/siswa/index')->with ('success', 'DATA SISWA BERHASIL DITAMBAH');
     }
 
     /**
@@ -99,7 +99,7 @@ class SiswaController extends Controller
             'password'=>'required'
         ]);
         $siswa->update($data_siswa);
-        return redirect('/siswa/index')->with('sucsess', 'Data Mata Pelajaran Berhasil Update');
+        return redirect('/siswa/index')->with('success', 'DATA SISWA BERHASIL DI UPDATE');
     }
 
     /**
@@ -116,6 +116,6 @@ class SiswaController extends Controller
         //     return back()->with('error', "mapel-> nama_mapel masih digunakan di menu mengajar");
         // }
         $siswa->delete();
-        return redirect('/siswa/index')->with ('sucsess', 'Data mata pelajaran berhasil dihapus');
+        return redirect('/siswa/index')->with ('success', 'DATA SISWA BERHASIL DIHAPUS');
     }
 }

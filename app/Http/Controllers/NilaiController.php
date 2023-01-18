@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Jurusan;
-use App\Models\Kelas;
-use Illuminate\Http\Request;
 
-class JurusanController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Nilai;
+use App\Models\Siswa;
+use App\Models\Mengajar;
+use App\Models\Mapel;
+
+class NilaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +17,8 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        return view('jurusan.index', ['jurusan'=> Jurusan::all()
-        ]);
+        //
+        return view
     }
 
     /**
@@ -26,7 +29,6 @@ class JurusanController extends Controller
     public function create()
     {
         //
-        return view('jurusan.create');
     }
 
     /**
@@ -38,12 +40,6 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         //
-        $data_jurusan = $request->validate([
-            'nama_jurusan'=> 'required'
-        ]);
-       Jurusan::create($data_jurusan);
-
-        return redirect('/jurusan/index')->with('success', 'DATA GURU BERHASIL DITAMBAH');
     }
 
     /**
@@ -63,12 +59,9 @@ class JurusanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jurusan $jurusan)
+    public function edit($id)
     {
         //
-        return view('jurusan.edit', [
-            'jurusan'=> $jurusan
-        ]);
     }
 
     /**
@@ -78,14 +71,9 @@ class JurusanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jurusan $jurusan)
+    public function update(Request $request, $id)
     {
         //
-        $data_jurusan = $request->validate([
-            'nama_jurusan'=> 'required'
-        ]);
-        $jurusan->update($data_jurusan);
-        return redirect('/jurusan/index')->with('success', 'DATA GURU BERHASIL DI UPDATE');
     }
 
     /**
@@ -94,14 +82,8 @@ class JurusanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Jurusan $jurusan)
+    public function destroy($id)
     {
         //
-        $kelas = Kelas::where('jurusan_id', $jurusan->id)->first();
-        if($kelas){
-            return back()->with('error', "guru-> nama_guru masih digunakan di menu mengajar");
-        }
-        $jurusan->delete();
-        return redirect('/jurusan/index')->with ('success', 'DATA GURU BERHASIL DIHAPUS');
     }
 }

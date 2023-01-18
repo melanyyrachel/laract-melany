@@ -4,8 +4,8 @@
         <b>
             <h2>LIST DATA MATA PELAJARAN</h2>
             <a href="/mapel/create" class="button-primary">TAMBAH DATA</a>
-            @if (session('succsess'))
-                <p class="text-succsess">{{session('succsess')}}</p>
+            @if (session('success'))
+                <p class="text-success">{{session('success')}}</p>
             @endif
             @if (session('error'))
                 <p class="text-danger">{{session('error')}}</p>

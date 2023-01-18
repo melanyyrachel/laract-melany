@@ -16,7 +16,7 @@ export default function Layout({children}) {
             {/* Menu */}
             <div className="menu">
                <b>
-                <a href="/home">HOME</a>
+                <a href="/Home">HOME</a>
                 {/* {user?.role == 'admin' ? ( */}
                     <>
                     <a href="/guru/index">GURU</a>
