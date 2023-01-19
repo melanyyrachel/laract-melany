@@ -26,7 +26,7 @@
                     <td>{{ $loop->iteration}}</td>
                     <td>{{ $s->nis}}</td>
                     <td>{{ $s->nama_siswa}}</td>
-                    <td>{{ $s->jk}}</td>
+                    <td><center>{{ $s->jk}}</center></td>
                     <td>{{ $s->alamat}}</td>
                     <td>{{ $s->kelas->nama_kelas }}</td>
                     <td>{{ $s->password}}</td>

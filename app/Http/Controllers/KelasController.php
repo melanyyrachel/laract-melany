@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Mengajar;
+use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Jurusan;
 
@@ -102,23 +104,20 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
-        // $jurusan = Jurusan::where('kelas_id', $kelas->id)->first();
+        $siswa = Siswa::where('kelas_id', $kelas->id)->first();
+        $mengajar = Mengajar::where('kelas_id', $kelas->id)->first();
 
-        // if($jurusan) {
-        //     return back()->with('error', "$kelas->nama_kelas masih digunakan di menu mengajar");
-        // }
+         if($siswa) {
+            return back()->with('error', "$kelas->nama_kelas masih digunakan di menu mengajar");
+        }
 
-
-        // $jurusan = Jurusan::where('kelas_id', $kelas->id)->first();
-
-        // if($jurusan) {
-        //     return back()->with('error', "$kelas->jurusan_id masih digunakan di menu mengajar");
-        // }
+        if($mengajar) {
+            return back()->with('error', "$kelas->nama_kelas masih digunakan di menu mengajar");
+         }
 
 
         $kelas->delete();
 
-        return redirect('/kelas/index')->with('success', 'DATA BERHASIL DIHAPUS');
+        return back('/kelas/index')->with('success', 'DATA BERHASIL DIHAPUS');
     }
 }

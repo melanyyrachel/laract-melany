@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Guru;
-use App\Models\Kelas;
 use App\Models\Mengajar;
 use Illuminate\Http\Request;
 
@@ -109,9 +108,11 @@ class GuruController extends Controller
     {
         //
         $mengajar = Mengajar::where('guru_id', $guru->id)->first();
-        if($mengajar){
+
+         if($mengajar) {
             return back()->with('error', "$guru->nama_guru masih digunakan di menu mengajar");
         }
+
         $guru->delete();
         return redirect('/guru/index')->with ('success', 'DATA GURU BERHASIL DIHAPUS');
     }

@@ -99,7 +99,7 @@ class JurusanController extends Controller
         //
         $kelas = Kelas::where('jurusan_id', $jurusan->id)->first();
         if($kelas){
-            return back()->with('error', "guru-> nama_guru masih digunakan di menu mengajar");
+            return back()->with('error', "$jurusan->nama_jurusan masih digunakan di menu mengajar");
         }
         $jurusan->delete();
         return redirect('/jurusan/index')->with ('success', 'DATA GURU BERHASIL DIHAPUS');
